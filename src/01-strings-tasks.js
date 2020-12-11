@@ -203,48 +203,39 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-  const str = '*'.repeat(width);
-  let answer = str.repeat(height);
+  let answer = '';
   for (let j = 0; j < height; j += 1) {
-    answer = answer.replace(str, () => {
-      let replacement = '';
-      for (let i = 0; i < width; i += 1) {
-        let char = '';
-        if (j === 0) {
-          switch (i) {
-            case 0: char = '┌';
-              break;
-            case width: char = '┐';
-              break;
-            default: char = '─';
-          }
-        } else if (j === height) {
-          switch (i) {
-            case 0: char = '└';
-              break;
-            case width: char = '┘';
-              break;
-            default: char = '─';
-          }
-        } else {
-          switch (i) {
-            case 0: char = '│';
-              break;
-            case width: char = '│';
-              break;
-            default: char = ' ';
-          }
+    let replacement = '';
+    for (let i = 0; i < width; i += 1) {
+      let char = '';
+      if (j === 0) {
+        switch (i) {
+          case 0: char = '┌';
+            break;
+          case width - 1: char = '┐';
+            break;
+          default: char = '─';
         }
-        replacement += char;
-      }
-      if (j === height) {
-        replacement = `+${replacement}`;
+      } else if (j === height - 1) {
+        switch (i) {
+          case 0: char = '└';
+            break;
+          case width - 1: char = '┘';
+            break;
+          default: char = '─';
+        }
       } else {
-        replacement = `+${replacement}\n`;
+        switch (i) {
+          case 0: char = '│';
+            break;
+          case width - 1: char = '│';
+            break;
+          default: char = ' ';
+        }
       }
-      j += 1;
-      return replacement;
-    });
+      replacement += char;
+    }
+    answer += `${replacement}\n`;
   }
   return answer;
 }
@@ -266,8 +257,19 @@ function getRectangleString(width, height) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const ratLetters = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  let answer = '';
+  for (let i = 0; i < str.length; i += 1) {
+    const codingIndex = letters.indexOf(str[i]);
+    if (codingIndex < 0) {
+      answer += str[i];
+    } else {
+      answer += ratLetters[codingIndex];
+    }
+  }
+  return answer;
 }
 
 /**
@@ -283,8 +285,11 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  if (typeof value === 'string' || value instanceof String) {
+    return true;
+  }
+  return false;
 }
 
 
@@ -312,8 +317,12 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const deck = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
+  return deck.indexOf(value);
 }
 
 
