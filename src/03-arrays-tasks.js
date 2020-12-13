@@ -622,13 +622,13 @@ function swapHeadAndTail(arr) {
     return arr;
   }
   if (arr.length % 2 === 0) {
-    const head = arr.slice(0, middle + 1);
-    const tail = arr.slice(middle);
-    return Array.from([tail, head]);
+    const head = arr.slice(0, middle);
+    const tail = arr.slice(-middle);
+    return Array.from([...tail, ...head]);
   }
-  const head = arr.slice(0, middle + 1);
-  const tail = arr.slice(middle + 2);
-  return Array.from([tail, arr[middle + 1], head]);
+  const head = arr.slice(0, middle);
+  const tail = arr.slice(middle + 1);
+  return Array.from([...tail, arr[middle], ...head]);
 }
 
 
