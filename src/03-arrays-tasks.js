@@ -545,11 +545,6 @@ function distinct(arr) {
  *   }
  */
 function group(/* array, keySelector, valueSelector */) {
-  // const arr = array.map((el) => Array.from([el[keySelector],
-  //   array
-  //     .map((elem) => (el[keySelector] === elem[keySelector] ? elem[valueSelector] : 2))
-  //     .filter((elem) => elem !== 2)]));
-  // return new Map(arr);
   throw new Error('Not implemented');
 }
 
