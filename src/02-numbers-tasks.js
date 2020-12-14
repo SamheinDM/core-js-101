@@ -230,13 +230,14 @@ function isPrime(n) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(value, def) {
-  const converted = Number(value);
+function toNumber(/* value, def */) {
+  // const converted = Number(value);
   // eslint-disable-next-line no-self-compare
-  if (typeof converted === 'number' && converted === converted) {
-    return converted;
-  }
-  return def;
+  // if (typeof converted === 'number' && converted === converted) {
+  //   return converted;
+  // }
+  // return def;
+  throw new Error('Not implemented');
 }
 
 module.exports = {
