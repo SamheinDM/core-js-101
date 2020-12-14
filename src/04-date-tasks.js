@@ -108,9 +108,8 @@ function angleBetweenClockHands(/* date */) {
   // const hourAngle = 0.5 * (60 * date.getUTCHours() + date.getMinutes());
   // const minutesAngle = 6 * date.getMinutes();
   // const converter = Math.PI / 180;
-  // const diff = Math.abs(hourAngle - minutesAngle);
-  // const minDiff = Math.min((360 - diff), diff);
-  // return Math.abs(minDiff * converter);
+  // const diff = hourAngle - minutesAngle;
+  // return diff * converter;
   throw new Error('Not implemented');
 }
 

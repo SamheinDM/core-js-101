@@ -545,11 +545,6 @@ function distinct(arr) {
  *   }
  */
 function group(/* array, keySelector, valueSelector */) {
-  // let answer = new Set(array.map((el) => el[keySelector]));
-  // answer = Array.from(answer)
-  //   .map((el) => Array.from(el))
-  //   .map((el) => el.push([]));
-
   // const arr = array.map((el) => Array.from([el[keySelector],
   //   array
   //     .map((elem) => (el[keySelector] === elem[keySelector] ? elem[valueSelector] : 2))
